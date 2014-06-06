@@ -160,7 +160,7 @@ function SonosDevice(options,app) {
 	
 	tts.prototype.write = function(data){
 		log('Sonos - received TTS',data);
-		this.device.say(data,device.ttsLang);
+		this.device.say(data,this.device.ttsLang);
 		
 	}
 	
@@ -192,7 +192,7 @@ function SonosDevice(options,app) {
 		this.readable = true;
 		this.writeable = true;
 		this.V = 0;
-		this.D = 238;
+		this.D = 240;
 		this.G = self.name.replace(/[^a-zA-Z0-9]/g, '')+'gong';
 		this.name = 'Sonos ' +self.name + ' - dog';
 		this.device = self;
@@ -202,8 +202,23 @@ function SonosDevice(options,app) {
 	
 	gong.prototype.write = function(data){
 		log("Gong recieved "+data);
-		if(data == 1) {
+		if(data == 'DOG') {
 			this.device.dog();
+		}
+		if(data == 'CHURCH_BELL') {
+			this.device.church_bell();
+		}
+		if(data == 'DING_DING') {
+			this.device.ding_ding();
+		}
+		if(data == 'BEEP_BEEP') {
+			this.device.beep_beep();
+		}
+		if(data == 'FLUTE') {
+			this.device.flute();
+		}
+		if(data == 'GUITAR') {
+			this.device.guitar();
 		}
 	}
 		
@@ -297,4 +312,19 @@ SonosDevice.prototype.resume = function(){
 //I'm open to suggestions
 SonosDevice.prototype.dog = function(){
 	this.play('http://soundjax.com/reddo/92064%5Enightdog.mp3');
+}
+SonosDevice.prototype.church_bell = function(){
+	this.play('http://soundjax.com/reddo/19461%5Ebell3.mp3');
+}
+SonosDevice.prototype.ding_ding = function(){
+	this.play('http://soundjax.com/reddo/45101%5E2-bells.mp3');
+}
+SonosDevice.prototype.beep_beep = function(){
+	this.play('http://soundjax.com/reddo/54324%5EBEEP2.mp3');
+}
+SonosDevice.prototype.flute = function(){
+	this.play('http://soundjax.com/reddo/28010%5Eoutput-ng(flute).mp3');
+}
+SonosDevice.prototype.guitar = function(){
+	this.play('http://soundjax.com/reddo/11904%5Eguitar.mp3');
 }
